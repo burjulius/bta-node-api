@@ -9,6 +9,8 @@ const databasePassword = 'studentas123';
 const databaseName = 'my-bta-database';
 const databasePort = 57862;
 
+const booksRoutes = require('./routes/books');
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -22,7 +24,8 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
-app.get('/', (req, res) => res.send('Viso gero BTA!'));
+app.get('/', (req, res) => res.send('Knygynas'));
+app.use('/books', booksRoutes);
 
 app.listen(port, () =>
   console.log(`BTA API application listening on port ${port}!`)
