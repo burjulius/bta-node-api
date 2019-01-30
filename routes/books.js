@@ -55,11 +55,54 @@ router.post('/', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res) =>
-  res.send('atnaujinam pasirinkta knyga pagal ID')
-);
-router.delete('/:id', (req, res) =>
-  res.send('Trinam pasirinkta knyga pagal ID')
-);
+router.put('/:id', (req, res) => {
+  Book.findByIdAndUpdate(
+    { _id: req.params.id },
+    {
+      $set: mapToBook(req.body),
+    },
+    { new: true },
+    (error, book) => {
+      if (error) {
+        res.status(500).send(error.message);
+      } else {
+        console.log(book);
+        res.status(200).send(book);
+      }
+    }
+  );
+});
+router.delete('/:id', (req, res) => {
+  Book.findByIdAndRemove(
+    {
+      _id: req.params.id,
+    },
+    (error, success) => {
+      if (error) {
+        res.status(500).send(error.message);
+      } else {
+        console.log(success);
+        res.status(200).send(success);
+      }
+    }
+  );
+});
+
+const mapToBook = book => {
+  let newBook = {};
+
+  const title = book.title ? book.title : null;
+  const author = book.author ? book.author : null;
+
+  if (title) {
+    newBook = Object.assign(newBook, { title: title });
+  }
+
+  if (author) {
+    newBook = Object.assign(newBook, { author: author });
+  }
+
+  return newBook;
+};
 
 module.exports = router;
