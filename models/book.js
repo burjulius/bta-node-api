@@ -9,4 +9,4 @@ const BookSchema = new Schema({
   bestSeller: Boolean,
 });
 
-module.exports = mongoose.model('Boook', BookSchema);
+module.exports = mongoose.model('Book', BookSchema);
