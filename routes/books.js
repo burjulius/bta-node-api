@@ -13,17 +13,6 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/bestseller', (req, res) => {
-  Book.find({ bestSeller: true }).exec((error, books) => {
-    if (error) {
-      res.status(500).send(error.message);
-    } else {
-      console.log(books);
-      res.send(books);
-    }
-  });
-});
-
 router.get('/:id', (req, res) => {
   Book.findOne({ _id: req.params.id }).exec((error, book) => {
     if (error) {
