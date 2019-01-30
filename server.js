@@ -28,5 +28,5 @@ app.get('/', (req, res) => res.send('Knygynas'));
 app.use('/books', booksRoutes);
 
 app.listen(PORT, () =>
-  console.log(`BTA API application listening on port ${port}!`)
+  console.log(`BTA API application listening on port ${PORT}!`)
 );
