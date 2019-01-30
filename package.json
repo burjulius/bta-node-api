@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node server.js",
     "start:dev": "nodemon server.js"
   },
   "dependencies": {
@@ -13,5 +14,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
+  },
+  "engines": {
+    "node": "10.0"
   }
 }
